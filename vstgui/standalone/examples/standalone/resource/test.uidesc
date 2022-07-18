@@ -41,7 +41,7 @@
 				"SelectedRow": "29"
 			},
 			"UIDescFilePath": {
-				"path": "Z:/vstgui/vstgui/standalone/examples/standalone/resource/test.uidesc"
+				"path": "/Users/scheffle/Source/vstgui/vstgui/standalone/examples/standalone/resource/test.uidesc"
 			},
 			"UITagsDataSource": {
 				"SelectedRow": "-1"
@@ -82,100 +82,6 @@
 					"wants-focus": "false"
 				},
 				"children": {
-					"CViewContainer": {
-						"attributes": {
-							"autosize": "left right top ",
-							"background-color": "~ BlackCColor",
-							"background-color-draw-style": "filled and stroked",
-							"class": "CViewContainer",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "0, 0",
-							"size": "410, 20",
-							"transparent": "false",
-							"wants-focus": "false"
-						}
-					},
-					"CViewContainer": {
-						"attributes": {
-							"autosize": "left right bottom ",
-							"background-color": "~ BlackCColor",
-							"background-color-draw-style": "filled and stroked",
-							"class": "CViewContainer",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "0, 330",
-							"size": "410, 20",
-							"transparent": "false",
-							"wants-focus": "false"
-						}
-					},
-					"CCheckBox": {
-						"attributes": {
-							"autosize-to-fit": "false",
-							"boxfill-color": "~ BlackCColor",
-							"boxframe-color": "~ BlackCColor",
-							"checkmark-color": "~ WhiteCColor",
-							"class": "CCheckBox",
-							"control-tag": "Activate",
-							"default-value": "0.5",
-							"draw-crossbox": "true",
-							"font": "~ SystemFont",
-							"font-color": "~ WhiteCColor",
-							"frame-width": "1",
-							"max-value": "1",
-							"min-value": "0",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "20, 10",
-							"round-rect-radius": "2",
-							"size": "100, 20",
-							"title": "Active",
-							"tooltip": "Checkbox",
-							"transparent": "false",
-							"wants-focus": "true",
-							"wheel-inc-value": "0.1"
-						}
-					},
-					"CParamDisplay": {
-						"attributes": {
-							"autosize": "left right top ",
-							"back-color": "~ WhiteCColor",
-							"background-offset": "0, 0",
-							"class": "CParamDisplay",
-							"control-tag": "MutableString",
-							"default-value": "0.5",
-							"font": "~ NormalFont",
-							"font-antialias": "true",
-							"font-color": "~ BlackCColor",
-							"frame-color": "~ BlackCColor",
-							"frame-width": "-1",
-							"max-value": "1",
-							"min-value": "0",
-							"mouse-enabled": "true",
-							"opacity": "1",
-							"origin": "120, 10",
-							"round-rect-radius": "3",
-							"shadow-color": "~ RedCColor",
-							"size": "280, 20",
-							"style-3D-in": "false",
-							"style-3D-out": "false",
-							"style-no-draw": "false",
-							"style-no-frame": "false",
-							"style-no-text": "false",
-							"style-round-rect": "true",
-							"style-shadow-text": "false",
-							"text-alignment": "center",
-							"text-inset": "0, 0",
-							"text-rotation": "0",
-							"text-shadow-offset": "1, 1",
-							"tooltip": "Parameter Display",
-							"transparent": "false",
-							"value-precision": "2",
-							"wants-focus": "false",
-							"wheel-inc-value": "0.1"
-						}
-					},
 					"CView": {
 						"attributes": {
 							"autosize": "left right top bottom ",
@@ -183,8 +89,8 @@
 							"custom-view-name": "FlickerView",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "15, 45",
-							"size": "385, 295",
+							"origin": "10, 10",
+							"size": "390, 330",
 							"sub-controller": "FlickerViewController",
 							"transparent": "false",
 							"wants-focus": "false"
