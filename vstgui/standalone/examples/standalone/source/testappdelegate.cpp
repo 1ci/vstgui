@@ -17,9 +17,14 @@
 #include "vstgui/uidescription/delegationcontroller.h"
 #include "vstgui/lib/cframe.h"
 #include "vstgui/lib/crect.h"
+#include "vstgui/lib/cdrawcontext.h"
+#include "vstgui/lib/cgraphicspath.h"
+#include "vstgui/lib/cvstguitimer.h"
 #include "vstgui/lib/iviewlistener.h"
 #include "vstgui/lib/controls/ccontrol.h"
 #include "vstgui/lib/controls/clistcontrol.h"
+#include "vstgui/uidescription/uiattributes.h"
+#include "vstgui/uidescription/iuidescription.h"
 
 #include "vstgui/standalone/source/genericalertbox.h"
 
@@ -108,6 +113,60 @@ public:
 	}
 
 	std::vector<CControl*> controls;
+};
+
+struct FlickerView : CView
+{
+	using CView::CView;
+	bool attached (CView* p) override
+	{
+		timer = makeOwned<CVSTGUITimer> ([&] (auto) { invalid (); }, 1);
+		return CView::attached (p);
+	}
+	bool removed (CView* p) override
+	{
+		timer = nullptr;
+		return CView::removed(p);
+	}
+	void draw (CDrawContext* con) override
+	{
+		int width = getWidth ();
+		int height = getHeight ();
+
+		if (auto gp = owned (con->createGraphicsPath ()))
+		{
+			CRect r = getViewSize ();
+			r.setWidth (1);
+			for (int i = 0; i < width; i++)
+			{
+				gp->addRect (r);
+				r.offset (1, 0);
+			}
+			con->setFillColor (kRedCColor);
+			con->drawGraphicsPath (gp);
+		}
+
+		setDirty (false);
+	}
+	SharedPointer<CVSTGUITimer> timer;
+};
+
+//------------------------------------------------------------------------
+struct FlickerViewController : DelegationController
+{
+	using DelegationController::DelegationController;
+
+	CView* createView (const UIAttributes& attributes, const IUIDescription* description) override
+	{
+		if (auto customViewName = attributes.getAttributeValue(IUIDescription::kCustomViewName))
+		{
+			if (*customViewName == "FlickerView")
+			{
+				return new FlickerView ({0, 0, 10, 10});
+			}
+		}
+		return controller->createView (attributes, description);
+	}
 };
 
 //------------------------------------------------------------------------
@@ -202,6 +261,7 @@ bool Delegate::handleCommand (const Command& command)
 		{
 			config.uiDescFileName = "test.uidesc";
 			config.windowConfig.style.border ();
+			config.windowConfig.style.size ();
 			config.windowConfig.style.movableByWindowBackground ();
 			auto customization = UIDesc::Customization::make ();
 			customization->addCreateViewControllerFunc (
@@ -213,6 +273,11 @@ bool Delegate::handleCommand (const Command& command)
 			    "WeekdaysController",
 			    [] (const UTF8StringView&, IController* parent, const IUIDescription*) {
 				    return new WeekdaysController (parent);
+			    });
+			customization->addCreateViewControllerFunc (
+			    "FlickerViewController",
+			    [] (const UTF8StringView&, IController* parent, const IUIDescription*) {
+				    return new FlickerViewController (parent);
 			    });
 			config.customization = customization;
 		}
