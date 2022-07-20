@@ -82,18 +82,35 @@
 					"wants-focus": "false"
 				},
 				"children": {
-					"CView": {
+					"CLayeredViewContainer": {
 						"attributes": {
 							"autosize": "left right top bottom ",
-							"class": "CView",
-							"custom-view-name": "FlickerView",
+							"background-color": "~ BlackCColor",
+							"background-color-draw-style": "filled and stroked",
+							"class": "CLayeredViewContainer",
 							"mouse-enabled": "true",
 							"opacity": "1",
-							"origin": "10, 10",
-							"size": "390, 330",
-							"sub-controller": "FlickerViewController",
+							"origin": "0, 0",
+							"size": "410, 350",
 							"transparent": "false",
-							"wants-focus": "false"
+							"wants-focus": "false",
+							"z-index": "0"
+						},
+						"children": {
+							"CView": {
+								"attributes": {
+									"autosize": "left right top bottom ",
+									"class": "CView",
+									"custom-view-name": "FlickerView",
+									"mouse-enabled": "true",
+									"opacity": "1",
+									"origin": "10, 10",
+									"size": "390, 330",
+									"sub-controller": "FlickerViewController",
+									"transparent": "false",
+									"wants-focus": "false"
+								}
+							}
 						}
 					}
 				}
